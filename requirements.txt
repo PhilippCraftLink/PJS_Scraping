@@ -1,0 +1,7 @@
+beautifulsoup4==4.13.4
+pymongo
+Scrapy
+seleniumbase==4.38.0
+pyautogui==0.9.54
+pyvirtualdisplay
+dotenv
