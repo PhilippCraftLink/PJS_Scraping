@@ -1,0 +1,194 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stepstone Scraper &mdash; PJS-PS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Scrapy Spiders" href="spiders.html" />
+    <link rel="prev" title="Scrapy" href="scrapyframework.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PJS-PS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="scrapyframework.html">Scrapy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Stepstone Scraper</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#stepstone_scraper.get_latest_output_file"><code class="docutils literal notranslate"><span class="pre">get_latest_output_file()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stepstone_scraper.run_spiders"><code class="docutils literal notranslate"><span class="pre">run_spiders()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stepstone_scraper.save_to_mongo"><code class="docutils literal notranslate"><span class="pre">save_to_mongo()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stepstone_scraper.wait_for_file"><code class="docutils literal notranslate"><span class="pre">wait_for_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="spiders.html">Scrapy Spiders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indeed.html">Indeed Scraper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">Main Function</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PJS-PS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Stepstone Scraper</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Skripte/stepstone.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-stepstone_scraper">
+<span id="stepstone-scraper"></span><h1>Stepstone Scraper<a class="headerlink" href="#module-stepstone_scraper" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="stepstone_scraper.get_latest_output_file">
+<span class="sig-prename descclassname"><span class="pre">stepstone_scraper.</span></span><span class="sig-name descname"><span class="pre">get_latest_output_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_title</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#stepstone_scraper.get_latest_output_file" title="Link to this definition"></a></dt>
+<dd><p>Retrieve the most recent JSON output file for a given job title in the specified directory.</p>
+<p>This function lists all JSON files in the directory that start with the job title and selects the most recently created one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directory</strong> – The directory to search for JSON files.</p></li>
+<li><p><strong>job_title</strong> – The job title used to filter the files.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The path to the most recent JSON file, or None if no files are found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="stepstone_scraper.run_spiders">
+<span class="sig-prename descclassname"><span class="pre">stepstone_scraper.</span></span><span class="sig-name descname"><span class="pre">run_spiders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#stepstone_scraper.run_spiders" title="Link to this definition"></a></dt>
+<dd><p>Run Scrapy spiders to scrape job listings from Stepstone and save the data to MongoDB.</p>
+<p>This function sets up and runs two Scrapy spiders: one to collect job links and another to scrape detailed job information.
+It manages the output files and ensures the scraped data is saved to the appropriate MongoDB collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job_title</strong> – The job title to search for on Stepstone.</p></li>
+<li><p><strong>db</strong> – A MongoDB database instance to store the scraped data.</p></li>
+</ul>
+</dd>
+</dl>
+<p>the project_path is defined as follows for the Docker configuration: ‘/app/stepstonesearch’,
+in the case of local execution this must be adapted accordingly (localpath/stepstonesearch)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="stepstone_scraper.save_to_mongo">
+<span class="sig-prename descclassname"><span class="pre">stepstone_scraper.</span></span><span class="sig-name descname"><span class="pre">save_to_mongo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#stepstone_scraper.save_to_mongo" title="Link to this definition"></a></dt>
+<dd><p>Save the scraped job data from a JSON file to a MongoDB collection.</p>
+<p>This function reads the JSON file produced by the Scrapy spider, processes the data, and inserts or updates the records
+in the specified MongoDB collection. It handles both single job entries and lists of jobs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>json_file</strong> – The path to the JSON file containing the scraped job data.</p></li>
+<li><p><strong>job_title</strong> – The job title used to determine the MongoDB collection name.</p></li>
+<li><p><strong>db</strong> – A MongoDB database instance to store the data.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="stepstone_scraper.wait_for_file">
+<span class="sig-prename descclassname"><span class="pre">stepstone_scraper.</span></span><span class="sig-name descname"><span class="pre">wait_for_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#stepstone_scraper.wait_for_file" title="Link to this definition"></a></dt>
+<dd><p>Wait for a specified file to be created within a given timeout period.</p>
+<p>This function is used to wait for the output file generated by a Scrapy spider. It checks periodically if the file exists
+and returns once the file is found or the timeout is reached.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>json_file</strong> – The path to the file to wait for.</p></li>
+<li><p><strong>timeout</strong> – The maximum time to wait in seconds (default is 30 seconds).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the file is found within the timeout, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="scrapyframework.html" class="btn btn-neutral float-left" title="Scrapy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="spiders.html" class="btn btn-neutral float-right" title="Scrapy Spiders" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Philipp Spall.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scraping with Scrapy &mdash; PJS-PS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Stepstone Scraper" href="stepstone.html" />
+    <link rel="prev" title="Job Listing Scraper" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PJS-PS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Scraping with Scrapy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-scrapy">What is Scrapy?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#key-files-in-the-project">Key Files in the Project</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stepstone.html">Stepstone Scraper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spiders.html">Scrapy Spiders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indeed.html">Indeed Scraper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="main.html">Main Function</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PJS-PS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Scraping with Scrapy</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Skripte/scrapyframework.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scraping-with-scrapy">
+<h1>Scraping with Scrapy<a class="headerlink" href="#scraping-with-scrapy" title="Link to this heading"></a></h1>
+<section id="what-is-scrapy">
+<h2>What is Scrapy?<a class="headerlink" href="#what-is-scrapy" title="Link to this heading"></a></h2>
+<p>Scrapy is a powerful and flexible web scraping framework for Python. It simplifies the process of building and running web spiders to crawl websites and extract structured data. Scrapy manages many complexities of web scraping, such as handling HTTP requests, following pagination links, and dealing with cookies or different content types. It’s widely used for tasks like data extraction, automated testing, and information gathering.</p>
+<p>For more details, check out the <a class="reference external" href="https://docs.scrapy.org/en/latest/">official Scrapy documentation</a>.</p>
+</section>
+<section id="key-files-in-the-project">
+<h2>Key Files in the Project<a class="headerlink" href="#key-files-in-the-project" title="Link to this heading"></a></h2>
+<ul>
+<li><p><strong>`settings.py`</strong></p>
+<p>This file holds the configuration settings for the Scrapy project. It defines:</p>
+<ul class="simple">
+<li><p>The bot name (<code class="docutils literal notranslate"><span class="pre">BOT_NAME</span> <span class="pre">=</span> <span class="pre">&quot;stepstonesearch&quot;</span></code>).</p></li>
+<li><p>Spider module locations (<code class="docutils literal notranslate"><span class="pre">SPIDER_MODULES</span></code>).</p></li>
+<li><p>A custom user agent mimicking Firefox (<code class="docutils literal notranslate"><span class="pre">USER_AGENT</span></code>) to make requests appear legitimate.</p></li>
+<li><p>Scraping behavior, such as disabling cookies (<code class="docutils literal notranslate"><span class="pre">COOKIES_ENABLED</span> <span class="pre">=</span> <span class="pre">False</span></code>) and setting a 3-second download delay (<code class="docutils literal notranslate"><span class="pre">DOWNLOAD_DELAY</span> <span class="pre">=</span> <span class="pre">3</span></code>) to avoid overwhelming the server.</p></li>
+<li><p>Whether to obey robots.txt rules (<code class="docutils literal notranslate"><span class="pre">ROBOTSTXT_OBEY</span> <span class="pre">=</span> <span class="pre">False</span></code>).</p></li>
+</ul>
+<p>These settings ensure the scraper runs responsibly and efficiently.</p>
+</li>
+<li><p><strong>`items.py`</strong></p>
+<p>This file defines data models for scraped items. Scrapy uses items as containers to structure extracted data. In this project, the <code class="docutils literal notranslate"><span class="pre">StepstonesearchItem</span></code> class is defined with a single placeholder field (<code class="docutils literal notranslate"><span class="pre">name</span></code>). This suggests the project doesn’t heavily rely on Scrapy’s item system, handling data processing directly in the spiders instead.</p>
+</li>
+<li><p><strong>`pipelines.py`</strong></p>
+<p>This file is for defining item pipelines, which process scraped items (e.g., cleaning, validating, or storing data). The project includes a <code class="docutils literal notranslate"><span class="pre">StepstonesearchPipeline</span></code> class, but it only returns items without modification. This indicates no additional processing occurs in the pipeline, with data handling managed elsewhere.</p>
+</li>
+<li><p><strong>`Links.py`</strong></p>
+<p>This file contains the <code class="docutils literal notranslate"><span class="pre">LinksSpider</span></code> spider, which scrapes job listing links from Stepstone search result pages. It:</p>
+<ul class="simple">
+<li><p>Starts with a search URL for a job title, such as “pwc-consultant”.</p></li>
+<li><p>Extracts job details like title, company, location, and URL.</p></li>
+<li><p>Follows pagination up to a set limit, such as 5 pages or 35 jobs.</p></li>
+<li><p>Saves results to <code class="docutils literal notranslate"><span class="pre">links_output.json</span></code>.</p></li>
+</ul>
+<p>This spider is the first step in collecting job links for further scraping.</p>
+</li>
+<li><p><strong>`sitespider.py`</strong></p>
+<p>This file defines the <code class="docutils literal notranslate"><span class="pre">sitespiderSpider</span></code> spider, which scrapes detailed job information from individual job pages. It:</p>
+<ul class="simple">
+<li><p>Reads links from <code class="docutils literal notranslate"><span class="pre">links_output.json</span></code>.</p></li>
+<li><p>Extracts details like job title, company, location, salary, description paragraphs, and lists such as benefits.</p></li>
+<li><p>Saves data to a JSON file named with the job title and timestamp, for example, <code class="docutils literal notranslate"><span class="pre">pwc-consultant_2023-10-15_14-30-00.json</span></code>.</p></li>
+</ul>
+<p>This spider builds on the <code class="docutils literal notranslate"><span class="pre">LinksSpider</span></code> output to gather comprehensive job data.</p>
+</li>
+<li><p><strong>`stepstone_scraper.py`</strong></p>
+<p>This file contains functions to run the Scrapy spiders and save the scraped data to a MongoDB database. It manages the execution of the spiders, waits for output files, and handles data storage. The main functions are explained in the individual modules</p>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Job Listing Scraper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="stepstone.html" class="btn btn-neutral float-right" title="Stepstone Scraper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Philipp Spall.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
