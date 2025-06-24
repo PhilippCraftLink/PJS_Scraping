@@ -1,0 +1,234 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Listing Scraper &mdash; PJS-PS 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Scraping with Scrapy" href="Skripte/scrapyframework.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            PJS-PS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Skripte/scrapyframework.html">Scraping with Scrapy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Skripte/stepstone.html">Stepstone Scraper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Skripte/spiders.html">Scrapy Spiders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Skripte/indeed.html">Indeed Scraper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Skripte/main.html">Main Function</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">PJS-PS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Job Listing Scraper</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="job-listing-scraper">
+<h1>Job Listing Scraper<a class="headerlink" href="#job-listing-scraper" title="Link to this heading"></a></h1>
+<p>This project was developed as part of a university seminar in collaboration with <strong>PWC (PricewaterhouseCoopers)</strong>. The codebase is designed to be easily accessible and deployable using <strong>Docker</strong>, ensuring a streamlined setup process for users.</p>
+<p>My task was to identify suitable sources for data extraction. To achieve this, I analyzed various job portals to assess whether they provide both qualitative and sufficiently quantitative data. Additionally, I evaluated each portal with regard to bot detection mechanisms and the simplicity of their HTML structure.</p>
+<p>Based on this analysis, Stepstone emerged as a particularly scraping-friendly and high-quality data source. By using reverse engineering and scraping frameworks, I was able to access the API endpoint and retrieve structured data. The extracted data then only needed to be saved in proper JSON format to be ready for further processing.</p>
+<p>As a second source, I decided in favour of the Indeed portal. The decision criteria here were very similar to Stepstone.
+Indeed also offers high quality and a large amount of data. However, Indeed was much more difficult to scrape. On the one hand, the HTML structure is very deeply nested and difficult to analyse. Secondly, Indeed uses Cloud-Flare as an anti-bot mechanism. Using the Scrapy framework is not enough to bypass this captcha test.
+Even a normal Selenium browser is not sufficient. To solve the test, i decided to use Seleniumbase, an extension of Selenium, which
+recognises and automatically solves simple captcha tests.</p>
+<hr class="docutils" />
+<section id="table-of-contents">
+<h2>📚 Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#project-overview"><span class="xref myst">Project Overview</span></a></p></li>
+<li><p><a class="reference internal" href="#features"><span class="xref myst">Features</span></a></p></li>
+<li><p><a class="reference internal" href="#technologies-used"><span class="xref myst">Technologies Used</span></a></p></li>
+<li><p><a class="reference internal" href="#setup-and-installation"><span class="xref myst">Setup and Installation</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#prerequisites"><span class="xref myst">Prerequisites</span></a></p></li>
+<li><p><a class="reference internal" href="#clone-the-repository"><span class="xref myst">Clone the Repository</span></a></p></li>
+<li><p><a class="reference internal" href="#install-dependencies"><span class="xref myst">Install Dependencies</span></a></p></li>
+<li><p><a class="reference internal" href="#set-up-mongodb"><span class="xref myst">Set Up MongoDB</span></a></p></li>
+<li><p><a class="reference internal" href="#configure-environment-variables"><span class="xref myst">Configure Environment Variables</span></a></p></li>
+<li><p><a class="reference internal" href="#build-and-run-with-docker"><span class="xref myst">Build and Run with Docker</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#usage"><span class="xref myst">Usage</span></a></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="project-overview">
+<h2>📌 Project Overview<a class="headerlink" href="#project-overview" title="Link to this heading"></a></h2>
+<p>This project emerged from a seminar collaboration between university students and PWC, with the goal of scraping job listing data from <strong>Indeed</strong> and <strong>Stepstone</strong>. The extracted data—such as job titles, companies, locations, and descriptions—is stored in a structured format for further analysis.</p>
+<p>By leveraging Docker, the project ensures portability and ease of deployment, making it accessible to both academic and professional audiences.</p>
+</section>
+<hr class="docutils" />
+<section id="features">
+<h2>🚀 Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Scrapes job listings from <strong>Indeed</strong> and <strong>Stepstone</strong></p></li>
+<li><p>Extracts key job details (e.g., title, company, location, description)</p></li>
+<li><p>Stores data in a <strong>MongoDB</strong> database</p></li>
+<li><p>Containerized with <strong>Docker</strong> for simplified setup and execution</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="technologies-used">
+<h2>🛠 Technologies Used<a class="headerlink" href="#technologies-used" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Python 3.x</strong> – Core language for scripting and data processing</p></li>
+<li><p><strong>Seleniumbase</strong> – Automates browser interactions for scraping dynamic content</p></li>
+<li><p><strong>Scrapy</strong> – Framework for efficient web scraping</p></li>
+<li><p><strong>MongoDB</strong> – NoSQL database for storing job listing data</p></li>
+<li><p><strong>Docker</strong> – Containerization tool for consistent deployment</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="setup-and-installation">
+<h2>⚙️ Setup and Installation<a class="headerlink" href="#setup-and-installation" title="Link to this heading"></a></h2>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.docker.com/">Docker</a> – Required for containerized deployment</p></li>
+<li><p><a class="reference external" href="https://www.mongodb.com/">MongoDB</a> – Can be run locally or via MongoDB Atlas</p></li>
+<li><p><a class="reference external" href="https://git-scm.com/">Git</a> – For cloning the repository</p></li>
+</ul>
+</section>
+<section id="clone-the-repository">
+<h3>Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Link to this heading"></a></h3>
+</section>
+<section id="bash">
+<h3>bash<a class="headerlink" href="#bash" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/PhilippCraftLink/PJS_PWC_WS2024-25-PS.git
+cd $path$
+</pre></div>
+</div>
+</section>
+<section id="install-dependencies">
+<h3>Install Dependencies<a class="headerlink" href="#install-dependencies" title="Link to this heading"></a></h3>
+<p>For local use without Docker:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip install -r requirements.txt
+</pre></div>
+</div>
+</section>
+<section id="set-up-mongodb">
+<h3>Set Up MongoDB<a class="headerlink" href="#set-up-mongodb" title="Link to this heading"></a></h3>
+<p>Start a local MongoDB instance (mongodb) or use a cloud-hosted solution (e.g., MongoDB Atlas)</p>
+<p>Create a database (e.g., job_listings) to store the scraped data</p>
+</section>
+<section id="configure-environment-variables">
+<h3>Configure Environment Variables<a class="headerlink" href="#configure-environment-variables" title="Link to this heading"></a></h3>
+<p>Create a .env file in the project root with the following content:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>MONGO_URI=&quot;your-MongoDB-Connection-Link&quot;
+</pre></div>
+</div>
+</section>
+<section id="build-and-run-with-docker">
+<h3>Build and Run with Docker<a class="headerlink" href="#build-and-run-with-docker" title="Link to this heading"></a></h3>
+<p>Build the Docker image:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker build -t image_Name .
+</pre></div>
+</div>
+<p>Run the container:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker run -it --env-file .env image_name
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h3>
+<p>With Docker: Follow the Build and Run with Docker steps</p>
+<p>Locally: After setting up dependencies and MongoDB:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python run_scrapers_parallel.py
+</pre></div>
+</div>
+<section id="output">
+<h4>Output:<a class="headerlink" href="#output" title="Link to this heading"></a></h4>
+<p>The scraper collects job listings from Indeed and Stepstone and stores them in MongoDB under the collections indeed_jobs and stepstone_jobs.</p>
+</section>
+</section>
+</section>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Skripte/scrapyframework.html" class="btn btn-neutral float-right" title="Scraping with Scrapy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Philipp Spall.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
